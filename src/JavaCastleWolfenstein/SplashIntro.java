@@ -1,6 +1,6 @@
 package JavaCastleWolfenstein;
 
-
+//this shits ugly!!!! Splash intro HACK!
 import java.util.ArrayList;
 
 

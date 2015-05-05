@@ -26,6 +26,9 @@ public class MainGame extends BasicGameState {
 		if (mouseTracking || editMode) {
 			g.drawString(mouseLocation, 100, 10);
 			g.drawString("Edit Mode ON", 500, 10);
+			g.drawString("+ - to adjust speed", 500, 20);
+			g.drawString("F1 toggle edit mode", 500, 30);
+			
 		}
 		g.drawImage(player.getplayer(), player.getPlayerX(), player.getPlayerY());
 	}
