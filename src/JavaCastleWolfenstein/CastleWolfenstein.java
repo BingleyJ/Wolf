@@ -10,7 +10,7 @@ import org.newdawn.slick.state.StateBasedGame;
 public class CastleWolfenstein extends StateBasedGame{
 
 	public static final String gamename = "Castle Wolfenstein";
-	public static final int splash = 0;
+	public static final int splashintro = 0;
 	public static final int maingame = 1;
 	public static final int goodbye = 2;
 	public static final int sht = 3736;
@@ -18,7 +18,7 @@ public class CastleWolfenstein extends StateBasedGame{
 	public CastleWolfenstein (String gamename){
 		super(gamename);
 		//define states
-		this.addState(new SplashIntro(splash));
+		this.addState(new SplashIntro(splashintro));
 		this.addState(new MainGame(maingame));
 		this.addState(new Goodbye(goodbye));
 	}
@@ -26,10 +26,10 @@ public class CastleWolfenstein extends StateBasedGame{
 	@Override
 	public void initStatesList(GameContainer gc) throws SlickException {
 		//Initialize states and enter menu state
-		this.getState(splash).init(gc, this);
+		this.getState(splashintro).init(gc, this);
 		this.getState(maingame).init(gc, this);
 		this.getState(goodbye).init(gc, this);
-		this.enterState(splash);
+		this.enterState(splashintro);
 	}
 	
 	public static void main(String[] args) {

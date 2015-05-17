@@ -21,6 +21,7 @@ public class SplashIntro extends BasicGameState{
 	}
 	
 	public void init(GameContainer gc, StateBasedGame sbg) throws SlickException{
+		//sbg.enterState(1);
 		String c64screen = "res/c64screen";
 		for (int i = 0; i < 26; i++){
 			Image temp = new Image(c64screen + i + ".png");
