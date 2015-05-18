@@ -26,31 +26,33 @@ public class MainGame extends BasicGameState {
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
-		// drawing 0,0 is top right
+		//_____|
+		//_____| Draw Edit Warning and Hud
+		//_____|
 		if (editMode.getEditmode()) {
 			g.drawString("Edit Mode ON", 350, 10);
 			g.drawString("F2 -toggle hud", 350, 20);
 			if(editMode.getHudView()){
 				g.drawString(mouseLocation, 100, 10);
-				g.drawString("             -[    ]-" , 500, 10);
-				g.drawString("Current tile -[    ]-" , 500, 20);
-				g.drawString("             -[    ]-" , 500, 30);
+				g.drawString("             -[       ]-" , 500, 10);
+				g.drawString("Current tile -[       ]-" , 500, 20);
+				g.drawString("             -[       ]-" , 500, 30);
 
-				g.drawString("+|-  : adj plr speed", 500, 60);
-				g.drawString("F1   : toggle edit mode", 500, 70);
-				g.drawString("Back : Pop last object", 500, 80);
-				g.drawString("F11|F12 : last|next obj", 500, 90);
-				g.drawString("Left Click : Place Object", 500, 100);
+				g.drawString("+|-  : adj plr speed", 500, 80);
+				g.drawString("F1   : toggle edit mode", 500, 90);
+				g.drawString("Back : Pop last object", 500, 100);
+				g.drawString("F11|F12 : last|next obj", 500, 110);
+				g.drawString("Left Click : Place Object", 500, 120);
+				g.drawString("S : SaveLevel", 500, 130);
+				g.drawString("V : Insert Verticle Wall", 500, 140);
+				g.drawString("H : Insert Horizont Wall", 500, 150);
 
 
 				
-
 			}
-			editMode.drawscene(g);
+			editMode.drawLevel(g);
 		}
 		g.drawImage(player.getplayer(), player.getPlayerX(), player.getPlayerY());
-		//System.out.println("Player is at " + player.getPlayerX() + " - " +  player.getPlayerY());
-		
 	}
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
@@ -61,14 +63,12 @@ public class MainGame extends BasicGameState {
 			editMode.setHudView(!editMode.getHudView());
 		}
 		if (editMode.getEditmode()){
-			//hor wall 1
-			
-					
+		//_____| --> hor wall 1
+		//_____| ---> WTF?
 		}
-		
-		// mouse 0,0 is bottom left
-		// graphics 0,0 is top left
-		// (600 - mouse y) will match graphics and mouse coordinates.
+		//info_| mouse X0,Y0 is bottom left,
+		//_____| graphics X0,Y0 is top left.
+		//_____| to marry : (600 - mouse y)
 		if (editMode.getEditmode()) {
 			int xMouseloc = Mouse.getX();
 			int yMouseloc = 600 - Mouse.getY();
@@ -76,10 +76,11 @@ public class MainGame extends BasicGameState {
 			if (editMode.getObjectlistSize() > 2)
 				editMode.deletemouseDuplicatesfromObjectist();
 		}
-		
-		//left button
+		//_____| left mouse button
+		//_____| X OFFset For Snap To Grid is 20
+		//_____| Y OFFset For Snap To Grid is 10
 		if (editMode.getEditmode() && Mouse.isButtonDown(0)  ){
-			editMode.addObject(editMode.getCurrentobject(), editMode.roundDown10(Mouse.getX()), editMode.roundDown10(600 - Mouse.getY()));
+			editMode.addObject(editMode.getCurrentobject(), editMode.roundDown20(Mouse.getX()), editMode.roundDown10(600 - Mouse.getY()));
 		}
 		
 	}
