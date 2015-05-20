@@ -14,18 +14,20 @@ public class EditMode {
 	private boolean editmode = true;
 	private boolean hudView = false;
 	public int currentObject;
-	private int totalObj = 3; // CHANGE THIS WHEN ADDING A NEW OBJECT INT
+	private int totalObj = 4; // CHANGE THIS WHEN ADDING A NEW OBJECT INT
 	private int horizontalWall = 0;
 	private int horizontalWall1 = 1;
 	private int lockedDoor = 2;
 	private int stairs = 3;
+	private int chest = 4;
 
-	private ArrayList<EditDrawObject> editObjects = new ArrayList<EditDrawObject>();
+	private ArrayList<Object> editObjects = new ArrayList<Object>();
 
 	Image horizonal_wall;
 	Image horizonal_wall1;
 	Image locked_door;
 	Image stairs_;
+	Image closedChest;
 	public String getCategory;
 
 	public EditMode() throws SlickException {
@@ -35,6 +37,7 @@ public class EditMode {
 		horizonal_wall1 = new Image("res/walls/horizontalwall120x10px.png");
 		locked_door = new Image("res/walls/lockeddoor10x70px.png");
 		stairs_ = new Image("res/walls/stairs50x70px.png");
+		closedChest = new Image("res/objects/chest.png");
 	}
 
 	public Image getImage(int inImageNumber) {
@@ -46,6 +49,8 @@ public class EditMode {
 			return locked_door;
 		else if (inImageNumber == stairs)
 			return stairs_;
+		else if (inImageNumber == chest)
+			return closedChest;
 		return null;
 	}
 
@@ -74,7 +79,7 @@ public class EditMode {
 	}
 
 	public void addObject(int inO, int inX, int inY) {
-		EditDrawObject tempObject = new EditDrawObject(inO, inX, inY);
+		Object tempObject = new Object(inO, inX, inY);
 		tempObject.setCategory();
 		editObjects.add(tempObject);
 	}
@@ -107,7 +112,7 @@ public class EditMode {
 		if (!editObjects.isEmpty()) {
 			for (int i = editObjects.size() - 1; i > 0; i--) {
 				// _____| Get Category For all Objects
-				EditDrawObject tempObject;
+				Object tempObject;
 				tempObject = editObjects.get(i);
 				tempObject.setCategory();
 
@@ -119,7 +124,7 @@ public class EditMode {
 
 	private void saveCurrentObject() {
 		// _____| Get Category For Current Object;
-		EditDrawObject tempOject;
+		Object tempOject;
 		tempOject = editObjects.get(editObjects.size() - 1);
 		tempOject.setCategory();
 		editObjects.set(editObjects.size() - 1, tempOject);
@@ -146,21 +151,22 @@ public class EditMode {
 	public void drawLevel(Graphics g) {
 		if (!editObjects.isEmpty()) {
 			for (int i = editObjects.size(); i > 0; i--) {
-				EditDrawObject tempObject;
+				Object tempObject;
 				tempObject = editObjects.get(i - 1);
 				g.drawImage(getImage(tempObject.getObjecttype()), tempObject.getX(), tempObject.getY());
-				System.out.println("Object - #" + i + " [" + tempObject.getX() + " - " + tempObject.getY() + "]");
+				//System.out.println("Object - #" + i + " [" + tempObject.getX() + " - " + tempObject.getY() + "]");
 			}
 		}
 		if (getHudView()) {
 			g.drawImage(getImage(getCurrentobject()), currentObjectX, currentObjectY);
 		}
 	}
-
-	public void deletemouseDuplicatesfromObjectist() {
+	
+	//_____|Maybe Sort the list then delete duplicates.
+	public void deleteDuplicatesFromList() {
 		for (int i = editObjects.size(); i > 0; i--) {
-			EditDrawObject tempObject;
-			EditDrawObject tempObject2;
+			Object tempObject;
+			Object tempObject2;
 			tempObject = editObjects.get(i - 1);
 			//_____| THIS IS ONLY CHECKING LIST NEIGHBOURS FOR DUPLICATED. NEEDS OPTIMIZED
 			if (i > 1) {
@@ -205,9 +211,4 @@ public class EditMode {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-	// ** Snap to grid
-	// ** 10 X 10 everything edit mode
-	// ** save method
-
 }

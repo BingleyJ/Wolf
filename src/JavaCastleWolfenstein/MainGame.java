@@ -14,6 +14,8 @@ public class MainGame extends BasicGameState {
 	Player player;
 	UserInput userinput;
 	
+	Animation p;
+	
 	public MainGame(int state) {
 		//System.out.print("PLAY");
 		
@@ -23,6 +25,8 @@ public class MainGame extends BasicGameState {
 		player = new Player();
 		userinput = new UserInput();
 		editMode = new EditMode();
+		p = new Animation(false);
+		p = player.getplayer();		
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -46,25 +50,22 @@ public class MainGame extends BasicGameState {
 				g.drawString("S : SaveLevel", 500, 130);
 				g.drawString("V : Insert Verticle Wall", 500, 140);
 				g.drawString("H : Insert Horizont Wall", 500, 150);
-
-
-				
 			}
 			editMode.drawLevel(g);
 		}
-		g.drawImage(player.getplayer(), player.getPlayerX(), player.getPlayerY());
+		//g.drawImage(player.getplayer(), player.getPlayerX(), player.getPlayerY());
+		
+		p.draw(player.getPlayerX(), player.getPlayerY());
+		//player.render(g);
 	}
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
+		
 		Input input = gc.getInput();
 		userinput.checkInput(input, player, editMode);
 		if (input.isKeyPressed(Input.KEY_F1)){
 			editMode.setEditmode(!editMode.getEditmode());
 			editMode.setHudView(!editMode.getHudView());
-		}
-		if (editMode.getEditmode()){
-		//_____| --> hor wall 1
-		//_____| ---> WTF?
 		}
 		//info_| mouse X0,Y0 is bottom left,
 		//_____| graphics X0,Y0 is top left.
@@ -74,7 +75,9 @@ public class MainGame extends BasicGameState {
 			int yMouseloc = 600 - Mouse.getY();
 			mouseLocation = "Mouse @ x:" + xMouseloc + " y:" + yMouseloc;
 			if (editMode.getObjectlistSize() > 2)
-				editMode.deletemouseDuplicatesfromObjectist();
+				//if editMode.isDragging
+				//elif editmode.isspamming
+				editMode.deleteDuplicatesFromList();
 		}
 		//_____| left mouse button
 		//_____| X OFFset For Snap To Grid is 20
@@ -82,7 +85,7 @@ public class MainGame extends BasicGameState {
 		if (editMode.getEditmode() && Mouse.isButtonDown(0)  ){
 			editMode.addObject(editMode.getCurrentobject(), editMode.roundDown20(Mouse.getX()), editMode.roundDown10(600 - Mouse.getY()));
 		}
-		
+		player.update(delta);
 	}
 	
 	public int getID(){

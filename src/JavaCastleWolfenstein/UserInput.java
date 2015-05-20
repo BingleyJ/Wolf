@@ -4,20 +4,36 @@ import org.newdawn.slick.Input;
 
 public class UserInput {
 	boolean editMode;
+	int still = 0;
+	int right = 1;
+	int left = 2;
+	int up = 3;
+	int down = 4;
 
 	public UserInput() {
 		editMode = true;
 	}
 	//_____| Player Movement
 	public void checkInput(Input input, Player player, EditMode inEditMode) {
-		if (input.isKeyDown(Input.KEY_UP) && player.getPlayerY() > player.getMinPlayerY())
+		if (input.isKeyDown(Input.KEY_UP) && player.getPlayerY() > player.getMinPlayerY()){
+			//_____| Move Player
 			player.setPlayerY(player.getPlayerY() - player.getPlayerSpeed());
-		if (input.isKeyDown(Input.KEY_DOWN) && player.getPlayerY() < player.getMaxPlayerY())
+		}
+		if (input.isKeyDown(Input.KEY_DOWN) && player.getPlayerY() < player.getMaxPlayerY()){
+			//_____| Move Player
 			player.setPlayerY(player.getPlayerY() + player.getPlayerSpeed());		
-		if (input.isKeyDown(Input.KEY_LEFT) && player.getPlayerX() > player.getMinPlayerX())
+		}
+		if (input.isKeyDown(Input.KEY_LEFT) && player.getPlayerX() > player.getMinPlayerX()){
+			//_____| Move Player
 			player.setPlayerX(player.getPlayerX() - player.getPlayerSpeed());
-		if (input.isKeyDown(Input.KEY_RIGHT) && player.getPlayerX() < player.getMaxPlayerX())
+		}
+		if (input.isKeyDown(Input.KEY_RIGHT) && player.getPlayerX() < player.getMaxPlayerX()){
+			//_____| Move Player
 			player.setPlayerX(player.getPlayerX() + player.getPlayerSpeed());
+			player.setCurrentAnimation(right);
+		}
+		//else
+		//	player.setCurrentAnimation(still);
 		
 		//_____| Toggle Edit Mode
 		if (input.isKeyPressed(Input.KEY_F1))
