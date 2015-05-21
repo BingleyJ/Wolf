@@ -10,6 +10,8 @@ Remake of the [classic 1983](https://en.wikipedia.org/wiki/Castle_Wolfenstein) [
 	 - [Eclipse](http://eclipse.org/) 
 	 - [Slick2d](http://slick.ninjacave.com/)
 	 - [lwjgl](http://www.lwjgl.org/)
+	 - [Gimp](http://www.gimp.org)
+	 - [Linux Mint](http://www.linuxmint.com)
 	 
 
 ----------
