@@ -1,5 +1,6 @@
 package JavaCastleWolfenstein;
 
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -24,11 +25,12 @@ public class Player {
 	Animation currentPlayer;
 	int delta;
 	
-	int still = 0;
-	int right = 1;
+	boolean still = true;
+	boolean right = false;
 	int left = 2;
 	int up = 3;
 	int down = 4;
+	boolean current;
 	
 	boolean gameOn = false;
 
@@ -41,19 +43,29 @@ public class Player {
 		Image[] walkdown = { new Image("res/player/player.png"), new Image("res/player/playerdown1.png"), new Image("res/player/playerdown2.png") };
 		playerWalkingRight = new Animation(walkRight, animationDuration, false);
 		playerStandingStill = new Animation(playerStill, animationDuration, false);
-		currentPlayer = playerStandingStill;
+		playerWalkingLeft = new Animation(walkleft, animationDuration, false);
+		playerWalkingDown = new Animation(walkdown, animationDuration, false);
+		playerWalkingUp = new Animation(walkup, animationDuration, false);
 
+
+
+		currentPlayer = playerStandingStill;
+		current = still;
 	}
 
 	public void render(Graphics g) {
+		currentPlayer.draw(100, Mouse.getY());
 		// playerWalkingLeft.draw(400,400);
 	}
 
 	public void update(int inDelta) {
 		this.delta = inDelta;
-		currentPlayer.update(inDelta);
-		// UPDATE DELTA
-		// playerWalkingRight.update(delta);
+		currentPlayer.update(delta);
+		playerStandingStill.update(delta);
+		playerWalkingRight.update(delta);
+		playerWalkingLeft.update(delta);
+		playerWalkingDown.update(delta);
+		playerWalkingUp.update(delta);
 	}
 
 
@@ -62,6 +74,13 @@ public class Player {
 		case 0: currentPlayer = playerStandingStill;
 			break;
 		case 1: currentPlayer = playerWalkingRight;
+			break;
+		case 2: currentPlayer = playerWalkingLeft;
+			break;
+		case 3: currentPlayer = playerWalkingUp;
+			break;
+		case 4: currentPlayer = playerWalkingDown;
+			break;
 		}
 		
 	}
@@ -124,6 +143,21 @@ public class Player {
 
 	public void setPlayerSpeed(float playerSpeed) {
 		this.playerSpeed = playerSpeed;
+	}
+	public boolean isStill() {
+		return still;
+	}
+
+	public void setStill(boolean still) {
+		this.still = still;
+	}
+
+	public boolean isRight() {
+		return right;
+	}
+
+	public void setRight(boolean right) {
+		this.right = right;
 	}
 
 }

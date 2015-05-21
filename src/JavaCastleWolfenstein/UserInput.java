@@ -15,25 +15,30 @@ public class UserInput {
 	}
 	//_____| Player Movement
 	public void checkInput(Input input, Player player, EditMode inEditMode) {
+		
+		
 		if (input.isKeyDown(Input.KEY_UP) && player.getPlayerY() > player.getMinPlayerY()){
 			//_____| Move Player
 			player.setPlayerY(player.getPlayerY() - player.getPlayerSpeed());
+			player.setCurrentAnimation(up);
 		}
+		else
+			player.setCurrentAnimation(still);
 		if (input.isKeyDown(Input.KEY_DOWN) && player.getPlayerY() < player.getMaxPlayerY()){
 			//_____| Move Player
-			player.setPlayerY(player.getPlayerY() + player.getPlayerSpeed());		
+			player.setPlayerY(player.getPlayerY() + player.getPlayerSpeed());	
+			player.setCurrentAnimation(down);
 		}
 		if (input.isKeyDown(Input.KEY_LEFT) && player.getPlayerX() > player.getMinPlayerX()){
 			//_____| Move Player
 			player.setPlayerX(player.getPlayerX() - player.getPlayerSpeed());
+			player.setCurrentAnimation(left);
 		}
 		if (input.isKeyDown(Input.KEY_RIGHT) && player.getPlayerX() < player.getMaxPlayerX()){
 			//_____| Move Player
 			player.setPlayerX(player.getPlayerX() + player.getPlayerSpeed());
 			player.setCurrentAnimation(right);
 		}
-		//else
-		//	player.setCurrentAnimation(still);
 		
 		//_____| Toggle Edit Mode
 		if (input.isKeyPressed(Input.KEY_F1))

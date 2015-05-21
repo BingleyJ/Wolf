@@ -17,7 +17,7 @@ public class MainGame extends BasicGameState {
 	Animation p;
 	
 	public MainGame(int state) {
-		//System.out.print("PLAY");
+
 		
 	}
 
@@ -25,8 +25,7 @@ public class MainGame extends BasicGameState {
 		player = new Player();
 		userinput = new UserInput();
 		editMode = new EditMode();
-		p = new Animation(false);
-		p = player.getplayer();		
+		p = new Animation(false);		
 	}
 
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g) throws SlickException {
@@ -42,14 +41,14 @@ public class MainGame extends BasicGameState {
 				g.drawString("Current tile -[       ]-" , 500, 20);
 				g.drawString("             -[       ]-" , 500, 30);
 
-				g.drawString("+|-  : adj plr speed", 500, 80);
-				g.drawString("F1   : toggle edit mode", 500, 90);
-				g.drawString("Back : Pop last object", 500, 100);
-				g.drawString("F11|F12 : last|next obj", 500, 110);
-				g.drawString("Left Click : Place Object", 500, 120);
-				g.drawString("S : SaveLevel", 500, 130);
-				g.drawString("V : Insert Verticle Wall", 500, 140);
-				g.drawString("H : Insert Horizont Wall", 500, 150);
+				g.drawString("+|-        : adj plr speed", 500, 80);
+				g.drawString("F1         : toggle edit mode", 500, 95);
+				g.drawString("Back       : Pop last object", 500, 110);
+				g.drawString("F11|F12    : last|next obj", 500, 125);
+				g.drawString("Left Click : Place Object", 500, 140);
+				g.drawString("S          : SaveLevel", 500, 155);
+				g.drawString("V          : Insert Vert Wall", 500, 170);
+				g.drawString("H          : Insert Hori Wall", 500, 185);
 			}
 			editMode.drawLevel(g);
 		}
@@ -75,7 +74,7 @@ public class MainGame extends BasicGameState {
 			int yMouseloc = 600 - Mouse.getY();
 			mouseLocation = "Mouse @ x:" + xMouseloc + " y:" + yMouseloc;
 			if (editMode.getObjectlistSize() > 2)
-				//if editMode.isDragging
+				//if editMode.isDragging <---- something like this for mouse drag and drop
 				//elif editmode.isspamming
 				editMode.deleteDuplicatesFromList();
 		}
@@ -85,7 +84,9 @@ public class MainGame extends BasicGameState {
 		if (editMode.getEditmode() && Mouse.isButtonDown(0)  ){
 			editMode.addObject(editMode.getCurrentobject(), editMode.roundDown20(Mouse.getX()), editMode.roundDown10(600 - Mouse.getY()));
 		}
+		//_____| Player Update
 		player.update(delta);
+		p = player.getplayer();
 	}
 	
 	public int getID(){
