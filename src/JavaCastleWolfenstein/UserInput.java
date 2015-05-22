@@ -64,6 +64,9 @@ public class UserInput {
 			if (input.isKeyPressed(Input.KEY_F12)) {
 				inEditMode.nextObj();
 			}
+			if (input.isKeyPressed(Input.KEY_F11)) {
+				inEditMode.lastObj();
+			}
 			if (input.isKeyPressed(Input.KEY_S)) {
 				inEditMode.saveLevel();
 			}

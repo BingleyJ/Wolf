@@ -111,13 +111,14 @@ public class EditMode {
 
 	public void saveLevel() {
 		if (!gameObjectsList.isEmpty()) {
+			deleteDuplicatesFromList();
 			for (int i = gameObjectsList.size() - 1; i > 0; i--) {
 				// _____| Get Category For all Objects
 				Object tempObject;
 				tempObject = gameObjectsList.get(i);
 				tempObject.setCategory();
 
-				// _____| EXPORT AND SAVE THE LEVEL HERE
+				// _____| EXPORT AND SAVE THE LEVEL HERE, VERN!
 				//______|
 			}
 		}
@@ -163,15 +164,16 @@ public class EditMode {
 		}
 	}
 	
+	//____| Quicksort buy X value
 	public void sortObjectList(){
 		int counter = gameObjectsList.size() - 1;
 		if (gameObjectsList == null || gameObjectsList.size() == 0){
 			return;
 		}
 		quicksort(0, counter);
-		
 	}
 	
+	//____| Quicksort buy Object.X value
 	private void quicksort(int inLow, int inHigh) {
 		int i = inLow; int j = inHigh;
 		//____| Get Pivot from middle.
@@ -196,14 +198,14 @@ public class EditMode {
 			quicksort(i, inHigh);
 	}
 	
-	
+	//_____| Print Object list to console
 	public void printObjectList(){
 		for (int i = 0; i < gameObjectsList.size(); i++){
 			System.out.println(i + ", " + gameObjectsList.get(i).getCategory() + " : Type:" + gameObjectsList.get(i).getObjecttype() + " X:" + gameObjectsList.get(i).getX() + " Y:" + gameObjectsList.get(i).getY());
 		}
 	}
 	
-	//_____|Maybe Sort the list then delete duplicates.
+	//_____| BROOOOOOOKEN!!!! DOH!
 	public void deleteDuplicatesFromList() {
 		for (int i = gameObjectsList.size(); i > 0; i--) {
 			Object tempObject;

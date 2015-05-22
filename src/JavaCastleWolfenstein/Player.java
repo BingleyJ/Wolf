@@ -15,22 +15,17 @@ public class Player {
 	float minPlayerX = 0;
 	float minPlayerY = 0;
 	float playerSpeed = 1;
+	
 	int[] animationDuration = { 200, 200, 200 };
-
+	int delta;
 	Animation playerStandingStill;
 	Animation playerWalkingRight;
 	Animation playerWalkingLeft;
 	Animation playerWalkingUp;
 	Animation playerWalkingDown;
 	Animation currentPlayer;
-	int delta;
 	
-	boolean still = true;
-	boolean right = false;
-	int left = 2;
-	int up = 3;
-	int down = 4;
-	boolean current;
+	
 	
 	boolean gameOn = false;
 
@@ -47,15 +42,11 @@ public class Player {
 		playerWalkingDown = new Animation(walkdown, animationDuration, false);
 		playerWalkingUp = new Animation(walkup, animationDuration, false);
 
-
-
 		currentPlayer = playerStandingStill;
-		current = still;
 	}
 
 	public void render(Graphics g) {
 		currentPlayer.draw(100, Mouse.getY());
-		// playerWalkingLeft.draw(400,400);
 	}
 
 	public void update(int inDelta) {
@@ -144,20 +135,6 @@ public class Player {
 	public void setPlayerSpeed(float playerSpeed) {
 		this.playerSpeed = playerSpeed;
 	}
-	public boolean isStill() {
-		return still;
-	}
 
-	public void setStill(boolean still) {
-		this.still = still;
-	}
-
-	public boolean isRight() {
-		return right;
-	}
-
-	public void setRight(boolean right) {
-		this.right = right;
-	}
 
 }

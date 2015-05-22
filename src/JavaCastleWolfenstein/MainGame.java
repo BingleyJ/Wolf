@@ -17,8 +17,6 @@ public class MainGame extends BasicGameState {
 	Animation p;
 	
 	public MainGame(int state) {
-
-		
 	}
 
 	public void init(GameContainer gc, StateBasedGame sbg)throws SlickException {
@@ -40,7 +38,6 @@ public class MainGame extends BasicGameState {
 				g.drawString("             -[       ]-" , 500, 10);
 				g.drawString("Current tile -[       ]-" , 500, 20);
 				g.drawString("             -[       ]-" , 500, 30);
-
 				g.drawString("+|-        : adj plr speed", 500, 80);
 				g.drawString("F1         : toggle edit mode", 500, 95);
 				g.drawString("Back       : Pop last object", 500, 110);
@@ -54,10 +51,7 @@ public class MainGame extends BasicGameState {
 			}
 			editMode.drawLevel(g);
 		}
-		//g.drawImage(player.getplayer(), player.getPlayerX(), player.getPlayerY());
-		
 		p.draw(player.getPlayerX(), player.getPlayerY());
-		//player.render(g);
 	}
 	
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
