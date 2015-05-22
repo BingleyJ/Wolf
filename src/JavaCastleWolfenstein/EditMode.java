@@ -1,6 +1,7 @@
 package JavaCastleWolfenstein;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Graphics;
@@ -21,7 +22,7 @@ public class EditMode {
 	private int stairs = 3;
 	private int chest = 4;
 
-	private ArrayList<Object> editObjects = new ArrayList<Object>();
+	private ArrayList<Object> gameObjectsList = new ArrayList<Object>();
 
 	Image horizonal_wall;
 	Image horizonal_wall1;
@@ -81,7 +82,7 @@ public class EditMode {
 	public void addObject(int inO, int inX, int inY) {
 		Object tempObject = new Object(inO, inX, inY);
 		tempObject.setCategory();
-		editObjects.add(tempObject);
+		gameObjectsList.add(tempObject);
 	}
 
 	public void update() {
@@ -105,15 +106,15 @@ public class EditMode {
 	}
 
 	public int getObjectlistSize() {
-		return editObjects.size();
+		return gameObjectsList.size();
 	}
 
 	public void saveLevel() {
-		if (!editObjects.isEmpty()) {
-			for (int i = editObjects.size() - 1; i > 0; i--) {
+		if (!gameObjectsList.isEmpty()) {
+			for (int i = gameObjectsList.size() - 1; i > 0; i--) {
 				// _____| Get Category For all Objects
 				Object tempObject;
-				tempObject = editObjects.get(i);
+				tempObject = gameObjectsList.get(i);
 				tempObject.setCategory();
 
 				// _____| EXPORT AND SAVE THE LEVEL HERE
@@ -125,9 +126,9 @@ public class EditMode {
 	private void saveCurrentObject() {
 		// _____| Get Category For Current Object;
 		Object tempOject;
-		tempOject = editObjects.get(editObjects.size() - 1);
+		tempOject = gameObjectsList.get(gameObjectsList.size() - 1);
 		tempOject.setCategory();
-		editObjects.set(editObjects.size() - 1, tempOject);
+		gameObjectsList.set(gameObjectsList.size() - 1, tempOject);
 		// _____| SAVE THE OBJECT HERE
 	}
 
@@ -149,10 +150,10 @@ public class EditMode {
 	}
 
 	public void drawLevel(Graphics g) {
-		if (!editObjects.isEmpty()) {
-			for (int i = editObjects.size(); i > 0; i--) {
+		if (!gameObjectsList.isEmpty()) {
+			for (int i = gameObjectsList.size(); i > 0; i--) {
 				Object tempObject;
-				tempObject = editObjects.get(i - 1);
+				tempObject = gameObjectsList.get(i - 1);
 				g.drawImage(getImage(tempObject.getObjecttype()), tempObject.getX(), tempObject.getY());
 				//System.out.println("Object - #" + i + " [" + tempObject.getX() + " - " + tempObject.getY() + "]");
 			}
@@ -162,22 +163,62 @@ public class EditMode {
 		}
 	}
 	
+	public void sortObjectList(){
+		int counter = gameObjectsList.size() - 1;
+		if (gameObjectsList == null || gameObjectsList.size() == 0){
+			return;
+		}
+		quicksort(0, counter);
+		
+	}
+	
+	private void quicksort(int inLow, int inHigh) {
+		int i = inLow; int j = inHigh;
+		//____| Get Pivot from middle.
+		int pivot = gameObjectsList.get(inLow + (inHigh - inLow)/2).getX();
+		//____| Divide List
+		while (i <= j){
+			while(gameObjectsList.get(i).getX() < pivot){
+				i++;
+			}
+			while(gameObjectsList.get(j).getX() > pivot){
+				j--;
+			}
+			if (i<=j){
+				Collections.swap(gameObjectsList, i, j);
+				i++;
+				j--;
+			}
+		}
+		if (inLow < j)
+			quicksort(inLow, j);
+		if (i < inHigh)
+			quicksort(i, inHigh);
+	}
+	
+	
+	public void printObjectList(){
+		for (int i = 0; i < gameObjectsList.size(); i++){
+			System.out.println(i + ", " + gameObjectsList.get(i).getCategory() + " : Type:" + gameObjectsList.get(i).getObjecttype() + " X:" + gameObjectsList.get(i).getX() + " Y:" + gameObjectsList.get(i).getY());
+		}
+	}
+	
 	//_____|Maybe Sort the list then delete duplicates.
 	public void deleteDuplicatesFromList() {
-		for (int i = editObjects.size(); i > 0; i--) {
+		for (int i = gameObjectsList.size(); i > 0; i--) {
 			Object tempObject;
 			Object tempObject2;
-			tempObject = editObjects.get(i - 1);
+			tempObject = gameObjectsList.get(i - 1);
 			//_____| THIS IS ONLY CHECKING LIST NEIGHBOURS FOR DUPLICATED. NEEDS OPTIMIZED
 			if (i > 1) {
-				tempObject2 = editObjects.get(i - 2);
+				tempObject2 = gameObjectsList.get(i - 2);
 				if (tempObject.getX() == tempObject2.getX() && tempObject.getY() == tempObject2.getY()) {
-					editObjects.remove(i - 1);
+					gameObjectsList.remove(i - 1);
 				}
 			}
 		}
 	}
-
+	
 	public boolean getHudView() {
 		return hudView;
 	}
@@ -201,9 +242,9 @@ public class EditMode {
 	}
 
 	public void deleteLastObject() {
-		if (!editObjects.isEmpty()) {
-			int tempSize = editObjects.size() - 1;
-			editObjects.remove(editObjects.size() - 1);
+		if (!gameObjectsList.isEmpty()) {
+			int tempSize = gameObjectsList.size() - 1;
+			gameObjectsList.remove(gameObjectsList.size() - 1);
 		}
 	}
 

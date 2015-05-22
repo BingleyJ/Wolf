@@ -15,7 +15,12 @@ public class UserInput {
 	}
 	//_____| Player Movement
 	public void checkInput(Input input, Player player, EditMode inEditMode) {
-		
+		if (input.isKeyPressed(Input.KEY_Z)){
+		inEditMode.sortObjectList();
+		}
+		if (input.isKeyPressed(Input.KEY_X)){
+			inEditMode.printObjectList();
+			}
 		
 		if (input.isKeyDown(Input.KEY_UP) && player.getPlayerY() > player.getMinPlayerY()){
 			//_____| Move Player

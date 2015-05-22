@@ -49,6 +49,8 @@ public class MainGame extends BasicGameState {
 				g.drawString("S          : SaveLevel", 500, 155);
 				g.drawString("V          : Insert Vert Wall", 500, 170);
 				g.drawString("H          : Insert Hori Wall", 500, 185);
+				g.drawString("Z          : Sort Object List", 500, 200);
+				g.drawString("X          : Print Object List to Console", 500, 215);
 			}
 			editMode.drawLevel(g);
 		}
