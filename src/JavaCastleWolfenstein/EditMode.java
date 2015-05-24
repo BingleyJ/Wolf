@@ -40,6 +40,10 @@ public class EditMode {
 		stairs_ = new Image("res/walls/stairs50x70px.png");
 		closedChest = new Image("res/objects/closedchest50x30px.png");
 	}
+	
+	public ArrayList<Object> getObjectList(){
+		return gameObjectsList;
+	}
 
 	public Image getImage(int inImageNumber) {
 		if (inImageNumber == horizontalWall)
@@ -172,7 +176,7 @@ public class EditMode {
 	private void quicksort(int inLow, int inHigh) {
 		int i = inLow; int j = inHigh;
 		//____| Get Pivot from middle.
-		int pivot = gameObjectsList.get(inLow + (inHigh - inLow)/2).getX();
+		float pivot = gameObjectsList.get(inLow + (inHigh - inLow)/2).getX();
 		//____| Divide List
 		while (i <= j){
 			while(gameObjectsList.get(i).getX() < pivot){

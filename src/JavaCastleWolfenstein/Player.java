@@ -5,8 +5,10 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 
 public class Player {
+	
 	Image player;
 	float playerX = 100;
 	float playerX2 = 130;
@@ -30,16 +32,14 @@ public class Player {
 	Animation playerWalkingDown;
 	Animation currentPlayer;
 	
-	
+	Rectangle playerRect;
 	
 	boolean gameOn = false;
 	
-	
-
 	public Player() throws SlickException {
 		// player = new Image("res/player.png");
 		Image[] playerStill = { new Image("res/player/playerfront30x50px.png"), new Image("res/player/playerfront30x50px.png"), new Image("res/player/playerfront30x50px.png") };
-		Image[] walkRight = { new Image("res/player/playerright230x50px.png"), new Image("res/player/playerright130x50px.png"),  new Image("res/player/playerright330x50px.png") };
+		Image[] walkRight = { new Image("res/player/playerright130x50px.png"), new Image("res/player/playerright230x50px.png"), new Image("res/player/playerright330x50px.png") };
 		Image[] walkleft = { new Image("res/player/playerleft130x50px.png"), new Image("res/player/playerleft230x50px.png"), new Image("res/player/playerleft330x50px.png") };
 		Image[] walkup = {  new Image("res/player/playerup130x50px.png"), new Image("res/player/playerback30x50px.png"), new Image("res/player/playerup230x50px.png") };
 		Image[] walkdown = {  new Image("res/player/playerdown130x50px.png"), new Image("res/player/playerfront30x50px.png"), new Image("res/player/playerdown230x50px.png") };
@@ -48,8 +48,8 @@ public class Player {
 		playerWalkingLeft = new Animation(walkleft, animationDuration, false);
 		playerWalkingDown = new Animation(walkdown, animationDuration, false);
 		playerWalkingUp = new Animation(walkup, animationDuration, false);
-
 		currentPlayer = playerStandingStill;
+		playerRect = new Rectangle(playerX, playerY, playerX2-playerX, playerY2-playerY);
 	}
 
 	public void render(Graphics g) {
@@ -59,6 +59,7 @@ public class Player {
 	public void update(int inDelta) {
 		this.delta = inDelta;
 		currentPlayer.update(delta);
+		playerRect = new Rectangle(playerX, playerY, playerX2-playerX, playerY2-playerY);
 	}
 
 
@@ -75,7 +76,10 @@ public class Player {
 		case 4: currentPlayer = playerWalkingDown;
 			break;
 		}
-		
+	}
+	
+	public Rectangle getCollisionRect(){
+		return playerRect;
 	}
 	
 	public Animation getplayer() {

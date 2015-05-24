@@ -1,3 +1,5 @@
+import org.newdawn.slick.geom.Rectangle;
+
 
 public class Collision {
 	private int objectType;
@@ -5,8 +7,7 @@ public class Collision {
 	private float X2;
 	private float Y1;
 	private float Y2;
-	
-	
+	private Rectangle collRect; //_____| collision rectangle
 
 	
 	public Collision(int inObjectType, float inX, float inY){
@@ -14,6 +15,7 @@ public class Collision {
 		this.X1 = inX;
 		this.Y1 = inY;
 		getDimensions(objectType);
+		collRect = new Rectangle(X1, Y1, X2-X1, Y2-Y1);
 	}
 
 
@@ -48,8 +50,8 @@ public class Collision {
 			Y2 = Y1 + 30;
 			break;
 		}
-
 	}
+	
 	
 	
 
