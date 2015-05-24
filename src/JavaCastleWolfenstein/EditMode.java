@@ -38,7 +38,7 @@ public class EditMode {
 		horizonal_wall1 = new Image("res/walls/horizontalwall120x10px.png");
 		locked_door = new Image("res/walls/lockeddoor10x70px.png");
 		stairs_ = new Image("res/walls/stairs50x70px.png");
-		closedChest = new Image("res/objects/chest.png");
+		closedChest = new Image("res/objects/closedchest50x30px.png");
 	}
 
 	public Image getImage(int inImageNumber) {
@@ -125,11 +125,6 @@ public class EditMode {
 	}
 
 	private void saveCurrentObject() {
-		// _____| Get Category For Current Object;
-		Object tempOject;
-		tempOject = gameObjectsList.get(gameObjectsList.size() - 1);
-		tempOject.setCategory();
-		gameObjectsList.set(gameObjectsList.size() - 1, tempOject);
 		// _____| SAVE THE OBJECT HERE
 	}
 

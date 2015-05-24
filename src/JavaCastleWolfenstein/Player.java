@@ -9,14 +9,19 @@ import org.newdawn.slick.SlickException;
 public class Player {
 	Image player;
 	float playerX = 100;
+	float playerX2 = 130;
+	float playerXold;
 	float playerY = 100;
+	float playerY2 = 150;
+	float playerYold;
 	float maxPlayerX = 771;
 	float maxPlayerY = 554;
 	float minPlayerX = 0;
 	float minPlayerY = 0;
 	float playerSpeed = 1;
 	
-	int[] animationDuration = { 200, 200, 200 };
+	int[] animationDuration = { 150, 100, 100 };	
+	int[] animationDurationPimpWalk = {100, 500, 2000};
 	int delta;
 	Animation playerStandingStill;
 	Animation playerWalkingRight;
@@ -28,14 +33,16 @@ public class Player {
 	
 	
 	boolean gameOn = false;
+	
+	
 
 	public Player() throws SlickException {
 		// player = new Image("res/player.png");
-		Image[] playerStill = { new Image("res/player/player.png"), new Image("res/player/player.png"), new Image("res/player/player.png") };
-		Image[] walkRight = { new Image("res/player/playerright1.png"), new Image("res/player/playerright2.png"), new Image("res/player/playerright3.png") };
-		Image[] walkleft = { new Image("res/player/playerleft1.png"), new Image("res/player/playerleft2.png"), new Image("res/player/playerleft3.png") };
-		Image[] walkup = { new Image("res/player/playerback.png"), new Image("res/player/playerup1.png"), new Image("res/player/playerup2.png") };
-		Image[] walkdown = { new Image("res/player/player.png"), new Image("res/player/playerdown1.png"), new Image("res/player/playerdown2.png") };
+		Image[] playerStill = { new Image("res/player/playerfront30x50px.png"), new Image("res/player/playerfront30x50px.png"), new Image("res/player/playerfront30x50px.png") };
+		Image[] walkRight = { new Image("res/player/playerright230x50px.png"), new Image("res/player/playerright130x50px.png"),  new Image("res/player/playerright330x50px.png") };
+		Image[] walkleft = { new Image("res/player/playerleft130x50px.png"), new Image("res/player/playerleft230x50px.png"), new Image("res/player/playerleft330x50px.png") };
+		Image[] walkup = {  new Image("res/player/playerup130x50px.png"), new Image("res/player/playerback30x50px.png"), new Image("res/player/playerup230x50px.png") };
+		Image[] walkdown = {  new Image("res/player/playerdown130x50px.png"), new Image("res/player/playerfront30x50px.png"), new Image("res/player/playerdown230x50px.png") };
 		playerWalkingRight = new Animation(walkRight, animationDuration, false);
 		playerStandingStill = new Animation(playerStill, animationDuration, false);
 		playerWalkingLeft = new Animation(walkleft, animationDuration, false);
@@ -52,11 +59,6 @@ public class Player {
 	public void update(int inDelta) {
 		this.delta = inDelta;
 		currentPlayer.update(delta);
-		playerStandingStill.update(delta);
-		playerWalkingRight.update(delta);
-		playerWalkingLeft.update(delta);
-		playerWalkingDown.update(delta);
-		playerWalkingUp.update(delta);
 	}
 
 
@@ -84,8 +86,10 @@ public class Player {
 		return playerX;
 	}
 
-	public void setPlayerX(float playerX) {
-		this.playerX = playerX;
+	public void setPlayerX(float inPlayerX) {
+		this.playerXold = this.playerX;
+		this.playerX2 = this.playerX + 30;
+		this.playerX = inPlayerX;
 	}
 
 	public float getPlayerY() {
@@ -93,6 +97,8 @@ public class Player {
 	}
 
 	public void setPlayerY(float playerY) {
+		this.playerYold = this.playerY;
+		this.playerY2 = this.playerY + 50;
 		this.playerY = playerY;
 	}
 

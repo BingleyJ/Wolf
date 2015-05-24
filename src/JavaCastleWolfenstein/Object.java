@@ -11,6 +11,7 @@ public class Object {
 		this.objectId = inObject;
 		this.X = inX;
 		this.Y = inY;
+		setCategory();
 	}
 	public String getCategory() {
 		return Category;
