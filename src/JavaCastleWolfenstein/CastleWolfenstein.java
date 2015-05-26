@@ -13,7 +13,6 @@ public class CastleWolfenstein extends StateBasedGame{
 	public static final int splashintro = 0;
 	public static final int maingame = 1;
 	public static final int goodbye = 2;
-	public static final int sht = 3736;
 	
 	public CastleWolfenstein (String gamename){
 		super(gamename);
@@ -45,7 +44,5 @@ public class CastleWolfenstein extends StateBasedGame{
 		}catch(SlickException e){
 			e.printStackTrace();
 		}
-
 	}
-
 }

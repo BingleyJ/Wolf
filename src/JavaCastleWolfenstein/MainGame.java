@@ -54,19 +54,20 @@ public class MainGame extends BasicGameState {
 		p.draw(player.getPlayerX(), player.getPlayerY());
 	}
 	
-	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException{
-		
+	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
+	
 		Input input = gc.getInput();
 		userinput.checkInput(input, player, editMode);
 		
-		//_____| Collision
-		
-		for (int i = 0;i < editMode.getObjectList().size();i++){
-			if (player.getCollisionRect().intersects(editMode.getObjectList().get(i).getCollisionRect())){
-				System.out.println("Player Collision!!!");
-			}
-		}
-		//_____|
+		// _____| Collision
+				for (int i = 0; i < editMode.getObjectList().size(); i++) {
+					if (player.getCollisionRect().intersects(editMode.getObjectList().get(i).getCollisionRect())) {
+						System.out.println("Player Collision!!!");
+						player.setPlayerX(player.getPlayerXold());
+						player.setPlayerY(player.getPlayerYold());
+					}
+				}
+				// _____|
 		
 		if (input.isKeyPressed(Input.KEY_F1)){
 			editMode.setEditmode(!editMode.getEditmode());

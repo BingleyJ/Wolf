@@ -12,6 +12,7 @@ public class Player {
 	Image player;
 	float playerX = 100;
 	float playerX2 = 130;
+
 	float playerXold;
 	float playerY = 100;
 	float playerY2 = 150;
@@ -145,6 +146,22 @@ public class Player {
 	public void setPlayerSpeed(float playerSpeed) {
 		this.playerSpeed = playerSpeed;
 	}
+	public float getPlayerXold() {
+		return playerXold;
+	}
+
+	public void setPlayerXold(float playerXold) {
+		this.playerXold = playerXold;
+	}
+
+	public float getPlayerYold() {
+		return playerYold;
+	}
+
+	public void setPlayerYold(float playerYold) {
+		this.playerYold = playerYold;
+	}
+
 
 
 }

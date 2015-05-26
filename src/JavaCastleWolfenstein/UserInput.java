@@ -44,6 +44,7 @@ public class UserInput {
 			player.setPlayerX(player.getPlayerX() + player.getPlayerSpeed());
 			player.setCurrentAnimation(right);
 		}
+	
 		
 		//_____| Toggle Edit Mode
 		if (input.isKeyPressed(Input.KEY_F1))

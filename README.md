@@ -3,7 +3,7 @@
 ----------
 
 
-Remake of the [classic 1983](https://en.wikipedia.org/wiki/Castle_Wolfenstein) [Commadore 64](https://en.wikipedia.org/wiki/Commodore_64) game.
+Java version of the retro [classic 1983](https://en.wikipedia.org/wiki/Castle_Wolfenstein) [Commadore 64](https://en.wikipedia.org/wiki/Commodore_64) game.
 
 ----------
  <i class="icon-upload"></i> **Tools Used**
