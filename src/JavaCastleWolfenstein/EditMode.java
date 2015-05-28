@@ -1,5 +1,6 @@
 package JavaCastleWolfenstein;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -21,6 +22,7 @@ public class EditMode {
 	private int lockedDoor = 2;
 	private int stairs = 3;
 	private int chest = 4;
+	private IO io;
 
 	private ArrayList<Object> gameObjectsList = new ArrayList<Object>();
 
@@ -32,6 +34,7 @@ public class EditMode {
 	public String getCategory;
 
 	public EditMode() throws SlickException {
+		io = new IO();
 		currentObjectX = 645;
 		currentObjectY = 25;
 		horizonal_wall = new Image("res/walls/horizontalwall20x10px.png");
@@ -113,7 +116,7 @@ public class EditMode {
 		return gameObjectsList.size();
 	}
 
-	public void saveLevel() {
+	public void saveLevel() throws IOException {
 		if (!gameObjectsList.isEmpty()) {
 			deleteDuplicatesFromList();
 			for (int i = gameObjectsList.size() - 1; i > 0; i--) {
@@ -124,8 +127,13 @@ public class EditMode {
 
 				// _____| EXPORT AND SAVE THE LEVEL HERE, VERN!
 				//______|
+				io.save(gameObjectsList);
 			}
 		}
+	}
+	
+	public void loadLevel() throws ClassNotFoundException, IOException{
+		io.load();
 	}
 
 	private void saveCurrentObject() {
@@ -172,7 +180,7 @@ public class EditMode {
 		quicksort(0, counter);
 	}
 	
-	//____| Quicksort buy Object.X value
+	//____| Quicksort by Object.X value
 	private void quicksort(int inLow, int inHigh) {
 		int i = inLow; int j = inHigh;
 		//____| Get Pivot from middle.

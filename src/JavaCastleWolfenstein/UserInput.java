@@ -1,5 +1,7 @@
 package JavaCastleWolfenstein;
 
+import java.io.IOException;
+
 import org.newdawn.slick.Input;
 
 public class UserInput {
@@ -14,7 +16,7 @@ public class UserInput {
 		editMode = true;
 	}
 	//_____| Player Movement
-	public void checkInput(Input input, Player player, EditMode inEditMode) {
+	public void checkInput(Input input, Player player, EditMode inEditMode) throws IOException, ClassNotFoundException {
 		if (input.isKeyPressed(Input.KEY_Z)){
 		inEditMode.sortObjectList();
 		}
@@ -67,6 +69,9 @@ public class UserInput {
 			}
 			if (input.isKeyPressed(Input.KEY_F11)) {
 				inEditMode.lastObj();
+			}
+			if (input.isKeyPressed(Input.KEY_L)) {
+				inEditMode.loadLevel();
 			}
 			if (input.isKeyPressed(Input.KEY_S)) {
 				inEditMode.saveLevel();

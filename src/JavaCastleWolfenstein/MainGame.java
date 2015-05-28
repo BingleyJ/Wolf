@@ -1,4 +1,6 @@
 package JavaCastleWolfenstein;
+import java.io.IOException;
+
 import org.lwjgl.input.Mouse;
 import org.lwjgl.opengl.XRandR.Screen;
 import org.newdawn.slick.*;
@@ -57,7 +59,15 @@ public class MainGame extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int delta) throws SlickException {
 	
 		Input input = gc.getInput();
-		userinput.checkInput(input, player, editMode);
+		try {
+			userinput.checkInput(input, player, editMode);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		// _____| Collision
 				for (int i = 0; i < editMode.getObjectList().size(); i++) {

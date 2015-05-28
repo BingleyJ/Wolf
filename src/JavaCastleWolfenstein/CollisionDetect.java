@@ -1,7 +1,6 @@
+package JavaCastleWolfenstein;
 import java.util.ArrayList;
 
-import JavaCastleWolfenstein.Player;
-import JavaCastleWolfenstein.Object;
 
 
 

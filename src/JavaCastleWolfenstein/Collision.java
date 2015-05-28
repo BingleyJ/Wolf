@@ -1,3 +1,4 @@
+package JavaCastleWolfenstein;
 import org.newdawn.slick.geom.Rectangle;
 
 
