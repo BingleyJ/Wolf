@@ -6,9 +6,9 @@ import java.util.ArrayList;
 
 public class CollisionDetect {
 	private Player player;
-	private ArrayList<Object> objectList;
+	private ArrayList<GameObject> objectList;
 	
-	public CollisionDetect(Player inPlayer, ArrayList<Object> inObjectList){
+	public CollisionDetect(Player inPlayer, ArrayList<GameObject> inObjectList){
 		this.player = inPlayer;
 		this.objectList = inObjectList;
 		

@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import org.newdawn.slick.geom.Rectangle;
 
-public class Object implements Serializable{
+public class GameObject implements Serializable{
 	
 	private String Category;
 	private int objectId;
@@ -15,7 +15,7 @@ public class Object implements Serializable{
 	
 	private Rectangle collRect;
 
-	public Object(int inObject, int inX, int inY){
+	public GameObject(int inObject, int inX, int inY){
 		this.objectId = inObject;
 		this.X1 = inX;
 		this.Y1 = inY;

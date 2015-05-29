@@ -22,9 +22,9 @@ public class EditMode {
 	private int lockedDoor = 2;
 	private int stairs = 3;
 	private int chest = 4;
-	private IO io;
+	private LoadSave io;
 
-	private ArrayList<Object> gameObjectsList = new ArrayList<Object>();
+	private ArrayList<GameObject> gameObjectsList = new ArrayList<GameObject>();
 
 	Image horizonal_wall;
 	Image horizonal_wall1;
@@ -34,7 +34,7 @@ public class EditMode {
 	public String getCategory;
 
 	public EditMode() throws SlickException {
-		io = new IO();
+		io = new LoadSave();
 		currentObjectX = 645;
 		currentObjectY = 25;
 		horizonal_wall = new Image("res/walls/horizontalwall20x10px.png");
@@ -44,7 +44,7 @@ public class EditMode {
 		closedChest = new Image("res/objects/closedchest50x30px.png");
 	}
 	
-	public ArrayList<Object> getObjectList(){
+	public ArrayList<GameObject> getObjectList(){
 		return gameObjectsList;
 	}
 
@@ -87,7 +87,7 @@ public class EditMode {
 	}
 
 	public void addObject(int inO, int inX, int inY) {
-		Object tempObject = new Object(inO, inX, inY);
+		GameObject tempObject = new GameObject(inO, inX, inY);
 		tempObject.setCategory();
 		gameObjectsList.add(tempObject);
 	}
@@ -121,7 +121,7 @@ public class EditMode {
 			deleteDuplicatesFromList();
 			for (int i = gameObjectsList.size() - 1; i > 0; i--) {
 				// _____| Get Category For all Objects
-				Object tempObject;
+				GameObject tempObject;
 				tempObject = gameObjectsList.get(i);
 				tempObject.setCategory();
 
@@ -160,7 +160,7 @@ public class EditMode {
 	public void drawLevel(Graphics g) {
 		if (!gameObjectsList.isEmpty()) {
 			for (int i = gameObjectsList.size(); i > 0; i--) {
-				Object tempObject;
+				GameObject tempObject;
 				tempObject = gameObjectsList.get(i - 1);
 				g.drawImage(getImage(tempObject.getObjecttype()), tempObject.getX(), tempObject.getY());
 				//System.out.println("Object - #" + i + " [" + tempObject.getX() + " - " + tempObject.getY() + "]");
@@ -215,8 +215,8 @@ public class EditMode {
 	//_____| BROOOOOOOKEN!!!! DOH!
 	public void deleteDuplicatesFromList() {
 		for (int i = gameObjectsList.size(); i > 0; i--) {
-			Object tempObject;
-			Object tempObject2;
+			GameObject tempObject;
+			GameObject tempObject2;
 			tempObject = gameObjectsList.get(i - 1);
 			//_____| THIS IS ONLY CHECKING LIST NEIGHBOURS FOR DUPLICATED. NEEDS OPTIMIZED
 			if (i > 1) {
