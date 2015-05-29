@@ -1,8 +1,10 @@
 package JavaCastleWolfenstein;
 
+import java.io.Serializable;
+
 import org.newdawn.slick.geom.Rectangle;
 
-public class Object {
+public class Object implements Serializable{
 	
 	private String Category;
 	private int objectId;
