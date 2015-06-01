@@ -92,6 +92,14 @@ public class EditMode {
 		tempObject.setCategory();
 		gameObjectsList.add(tempObject);
 	}
+	
+	public void deleteObject(float inX, float inY){
+		for (int i = 0; i < gameObjectsList.size(); i++){
+			if (gameObjectsList.get(i).getX() == inX && gameObjectsList.get(i).getY() == inY){
+				gameObjectsList.remove(i);
+			}
+		}
+	}
 
 	public void update() {
 		

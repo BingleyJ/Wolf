@@ -51,17 +51,18 @@ public class MainGame extends BasicGameState {
 				g.drawString("             -[       ]-" , 500, 10);
 				g.drawString("Current tile -[       ]-" , 500, 20);
 				g.drawString("             -[       ]-" , 500, 30);
-				g.drawString("+|-        : adj plr speed", 500, 80);
-				g.drawString("F1         : toggle edit mode", 500, 95);
-				g.drawString("Back       : Pop last object", 500, 110);
-				g.drawString("F11|F12    : last|next obj", 500, 125);
-				g.drawString("Left Click : Place Object", 500, 140);
-				g.drawString("S          : Save Level", 500, 155);
-				g.drawString("L          : Load Level", 500, 170);
-				g.drawString("V          : Insert Vert Wall", 500, 185);
-				g.drawString("H          : Insert Hori Wall", 500, 200);
-				g.drawString("Z          : Sort Object List", 500, 215);
-				g.drawString("X          : Print List to Console", 500, 230);
+				g.drawString("+|-         : adj plr speed", 500, 80);
+				g.drawString("F1          : toggle edit mode", 500, 95);
+				g.drawString("Back        : Pop last object", 500, 110);
+				g.drawString("F11|F12     : last|next obj", 500, 125);
+				g.drawString("Left Click  : Place Object", 500, 140);
+				g.drawString("Right Click : Place Object", 500, 155);
+				g.drawString("S           : Save Level", 500, 170);
+				g.drawString("L           : Load Level", 500, 185);
+				g.drawString("V           : Insert Vert Wall", 500, 200);
+				g.drawString("H           : Insert Hori Wall", 500, 215);
+				g.drawString("Z           : Sort Object List", 500, 230);
+				g.drawString("X           : Print List to Console", 500, 245);
 			}
 			editMode.drawLevel(g);
 		}
@@ -112,6 +113,9 @@ public class MainGame extends BasicGameState {
 		//_____| Y OFFset For Snap To Grid is 10
 		if (editMode.getEditmode() && Mouse.isButtonDown(0)  ){
 			editMode.addObject(editMode.getCurrentobject(), editMode.roundDown20(Mouse.getX()), editMode.roundDown10(600 - Mouse.getY()));
+		}
+		if (editMode.getEditmode() && Mouse.isButtonDown(1)  ){
+			editMode.deleteObject(editMode.roundDown20(Mouse.getX()), editMode.roundDown10(600 - Mouse.getY()));
 		}
 		//_____| Player Update
 		player.update(delta);
