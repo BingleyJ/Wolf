@@ -49,7 +49,7 @@ public class GameObject implements Serializable{
 			Y2 = Y1 + 70;
 			break;
 		case 3: 
-			X2 = X1 + 50;
+			X2 = X1 + 60;
 			Y2 = Y1 + 70;
 			break;
 		case 4:

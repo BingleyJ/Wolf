@@ -33,8 +33,9 @@ public class EditMode {
 	Image closedChest;
 	public String getCategory;
 
-	public EditMode() throws SlickException {
+	public EditMode() throws SlickException, ClassNotFoundException, IOException {
 		io = new LoadSave();
+		gameObjectsList = io.load();
 		currentObjectX = 645;
 		currentObjectY = 25;
 		horizonal_wall = new Image("res/walls/horizontalwall20x10px.png");
@@ -93,7 +94,7 @@ public class EditMode {
 	}
 
 	public void update() {
-
+		
 	}
 
 	public void setCurrentobject(int inCurrentobject) {
@@ -133,7 +134,7 @@ public class EditMode {
 	}
 	
 	public void loadLevel() throws ClassNotFoundException, IOException{
-		io.load();
+		gameObjectsList = io.load();
 	}
 
 	private void saveCurrentObject() {
