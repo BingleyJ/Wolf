@@ -2,8 +2,6 @@ package JavaCastleWolfenstein;
 import java.util.ArrayList;
 
 
-
-
 public class CollisionDetect {
 	private Player player;
 	private ArrayList<GameObject> objectList;

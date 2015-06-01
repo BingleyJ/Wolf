@@ -10,12 +10,12 @@ import org.newdawn.slick.geom.Rectangle;
 public class Player {
 	
 	Image player;
-	float playerX = 100;
-	float playerX2 = 130;
+	float playerX = 400;
+	float playerX2 = 430;
 
 	float playerXold;
-	float playerY = 100;
-	float playerY2 = 150;
+	float playerY = 300;
+	float playerY2 = 350;
 	float playerYold;
 	float maxPlayerX = 771;
 	float maxPlayerY = 554;
