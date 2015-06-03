@@ -1,4 +1,6 @@
 package JavaCastleWolfenstein;
+import java.util.ArrayList;
+
 import org.newdawn.slick.geom.Rectangle;
 
 
@@ -10,7 +12,6 @@ public class Collision {
 	private float Y2;
 	private Rectangle collRect; //_____| collision rectangle
 
-	
 	public Collision(int inObjectType, float inX, float inY){
 		this.objectType = inObjectType;
 		this.X1 = inX;
@@ -18,8 +19,16 @@ public class Collision {
 		getDimensions(objectType);
 		collRect = new Rectangle(X1, Y1, X2-X1, Y2-Y1);
 	}
-
-
+	
+	public boolean isCollision(Player player, ArrayList<GameObject> inList){
+		boolean collide = false;
+		for (int i = 0; i < inList.size(); i++){
+			if (player.getCollisionRect().intersects(inList.get(i).getCollisionRect())) {
+				collide = true;
+			}
+		}
+		return collide;
+	}
 
 	private void getDimensions(int inObjectType) {
 		// _____| 0 Wall1
@@ -52,8 +61,4 @@ public class Collision {
 			break;
 		}
 	}
-	
-	
-	
-
 }	

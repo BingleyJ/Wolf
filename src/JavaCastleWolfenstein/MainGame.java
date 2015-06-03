@@ -85,13 +85,13 @@ public class MainGame extends BasicGameState {
 		// _____| Collision
 		for (int i = 0; i < editMode.getObjectList().size(); i++) {
 			if (player.getCollisionRect().intersects(editMode.getObjectList().get(i).getCollisionRect())) {
-				System.out.println("Player Collision!!!");
-				player.setPlayerX(player.getPlayerXold());
-				player.setPlayerY(player.getPlayerYold());
+				//System.out.println("Player Collision!!!");
+				player.setPlayerX(player.getPlayerXOlder());
+				player.setPlayerY(player.getPlayerYOlder());
 			}
 		}
-		// _____|
-
+		
+		// _____| EVERYTHING BELOW NEEDS MOVED TO USERINPUT
 		if (input.isKeyPressed(Input.KEY_F1)){
 			editMode.setEditmode(!editMode.getEditmode());
 			editMode.setHudView(!editMode.getHudView());
@@ -104,8 +104,6 @@ public class MainGame extends BasicGameState {
 			int yMouseloc = 600 - Mouse.getY();
 			mouseLocation = "Mouse @ x:" + xMouseloc + " y:" + yMouseloc;
 			if (editMode.getObjectlistSize() > 2)
-				//if editMode.isDragging <---- something like this for mouse drag and drop
-				//elif editmode.isspamming
 				editMode.deleteDuplicatesFromList();
 		}
 		//_____| left mouse button
@@ -125,5 +123,4 @@ public class MainGame extends BasicGameState {
 	public int getID(){
 		return 1;
 	}
-
 }

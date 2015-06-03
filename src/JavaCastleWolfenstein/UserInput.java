@@ -17,36 +17,30 @@ public class UserInput {
 	}
 	//_____| Player Movement
 	public void checkInput(Input input, Player player, EditMode inEditMode) throws IOException, ClassNotFoundException {
-		if (input.isKeyPressed(Input.KEY_Z)){
-		inEditMode.sortObjectList();
-		}
-		if (input.isKeyPressed(Input.KEY_X)){
-			inEditMode.printObjectList();
-			}
-		
-		if (input.isKeyDown(Input.KEY_UP) && player.getPlayerY() > player.getMinPlayerY()){
+		CollisionDetect collisionDetect = new CollisionDetect(player, inEditMode.getObjectList());
+		Collision collision = new Collision(0, 100, 100);
+		if (input.isKeyDown(Input.KEY_UP) && player.getPlayerY() > player.getMinPlayerY() && !collisionDetect.isCollision()){
 			//_____| Move Player
 			player.setPlayerY(player.getPlayerY() - player.getPlayerSpeed());
 			player.setCurrentAnimation(up);
 		}
 		else
 			player.setCurrentAnimation(still);
-		if (input.isKeyDown(Input.KEY_DOWN) && player.getPlayerY() < player.getMaxPlayerY()){
+		if (input.isKeyDown(Input.KEY_DOWN) && player.getPlayerY() < player.getMaxPlayerY() && !collisionDetect.isCollision()){
 			//_____| Move Player
 			player.setPlayerY(player.getPlayerY() + player.getPlayerSpeed());	
 			player.setCurrentAnimation(down);
 		}
-		if (input.isKeyDown(Input.KEY_LEFT) && player.getPlayerX() > player.getMinPlayerX()){
+		if (input.isKeyDown(Input.KEY_LEFT) && player.getPlayerX() > player.getMinPlayerX() && !collisionDetect.isCollision()){
 			//_____| Move Player
 			player.setPlayerX(player.getPlayerX() - player.getPlayerSpeed());
 			player.setCurrentAnimation(left);
 		}
-		if (input.isKeyDown(Input.KEY_RIGHT) && player.getPlayerX() < player.getMaxPlayerX()){
+		if (input.isKeyDown(Input.KEY_RIGHT) && player.getPlayerX() < player.getMaxPlayerX() && !collisionDetect.isCollision()){
 			//_____| Move Player
 			player.setPlayerX(player.getPlayerX() + player.getPlayerSpeed());
 			player.setCurrentAnimation(right);
 		}
-	
 		
 		//_____| Toggle Edit Mode
 		if (input.isKeyPressed(Input.KEY_F1))
@@ -75,6 +69,12 @@ public class UserInput {
 			}
 			if (input.isKeyPressed(Input.KEY_S)) {
 				inEditMode.saveLevel();
+			}
+			if (input.isKeyPressed(Input.KEY_Z)) {
+				inEditMode.sortObjectList();
+			}
+			if (input.isKeyPressed(Input.KEY_X)) {
+				inEditMode.printObjectList();
 			}
 			if (input.isKeyDown(Input.KEY_ADD) && editMode)
 				player.setPlayerSpeed(player.getPlayerSpeed() + 1);

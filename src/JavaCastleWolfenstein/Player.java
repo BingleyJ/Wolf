@@ -12,19 +12,23 @@ public class Player {
 	Image player;
 	float playerX = 400;
 	float playerX2 = 430;
-
 	float playerXold;
+	float playerXOlder;
+
 	float playerY = 300;
 	float playerY2 = 350;
 	float playerYold;
+	float playerYOlder;
+
 	float maxPlayerX = 771;
 	float maxPlayerY = 554;
 	float minPlayerX = 0;
 	float minPlayerY = 0;
+	
 	float playerSpeed = 1;
 	
 	int[] animationDuration = { 150, 100, 100 };	
-	int[] animationDurationPimpWalk = {100, 500, 2000};
+	int[] animationDurationPimpWalk = { 100, 500, 2000 };
 	int delta;
 	Animation playerStandingStill;
 	Animation playerWalkingRight;
@@ -60,10 +64,83 @@ public class Player {
 	public void update(int inDelta) {
 		this.delta = inDelta;
 		currentPlayer.update(delta);
-		playerRect = new Rectangle(playerX, playerY, playerX2-playerX, playerY2-playerY);
+		playerRect.setBounds(playerX, playerY, playerX2-playerX, playerY2-playerY);
+	}
+	
+	public void setPlayerSpeed(float playerSpeed) {
+		this.playerSpeed = playerSpeed;
+	}
+	public float getPlayerSpeed() {
+		return playerSpeed;
 	}
 
+	public void setPlayerX(float inPlayerX) {
+		this.playerXOlder = this.playerXold;
+		this.playerXold = this.playerX;
+		this.playerX2 = this.playerX + 30;
+		this.playerX = inPlayerX;
+	}
+	public float getPlayerX() {
+		return playerX;
+	}
+	public void setPlayerXold(float playerXold) {
+		this.playerXold = playerXold;
+	}
+	public float getPlayerXold() {
+		return playerXold;
+	}
+	public void setPlayerXOlder(float PlayerXOlder) {
+		this.playerXOlder = PlayerXOlder;
+	}
+	public float getPlayerXOlder() {
+		return playerXOlder;
+	}
+	public void setMaxPlayerX(float maxPlayerX) {
+		this.maxPlayerX = maxPlayerX;
+	}
+	public float getMaxPlayerX() {
+		return maxPlayerX;
+	}
+	public void setMinPlayerX(float minPlayerX) {
+		this.minPlayerX = minPlayerX;
+	}
+	public float getMinPlayerX() {
+		return minPlayerX;
+	}
+		
+	
+	public void setPlayerY(float playerY) {
+		this.playerYOlder = this.playerYold;
+		this.playerYold = this.playerY;
+		this.playerY2 = this.playerY + 50;
+		this.playerY = playerY;
+	}
+	public float getPlayerY() {
+		return playerY;
+	}
+	public void setPlayerYold(float playerYold) {
+		this.playerYold = playerYold;
+	}
+	public float getPlayerYold() {
+		return playerYold;
+	}
+	public float getPlayerYOlder() {
+		return playerYOlder;
+	}
+	public void setMaxPlayerY(float maxPlayerY) {
+		this.maxPlayerY = maxPlayerY;
+	}
+	public float getMaxPlayerY() {
+		return maxPlayerY;
+	}
+	public void setMinPlayerY(float minPlayerY) {
+		this.minPlayerY = minPlayerY;
+	}
+	public float getMinPlayerY() {
+		return minPlayerY;
+	}
 
+	
 	public void setCurrentAnimation(int inAnim) {
 		switch (inAnim) {
 		case 0: currentPlayer = playerStandingStill;
@@ -78,90 +155,11 @@ public class Player {
 			break;
 		}
 	}
+	public Animation getplayer() {
+		return currentPlayer;
+	}
 	
 	public Rectangle getCollisionRect(){
 		return playerRect;
 	}
-	
-	public Animation getplayer() {
-		return currentPlayer;
-	}
-
-	public float getPlayerX() {
-		return playerX;
-	}
-
-	public void setPlayerX(float inPlayerX) {
-		this.playerXold = this.playerX;
-		this.playerX2 = this.playerX + 30;
-		this.playerX = inPlayerX;
-	}
-
-	public float getPlayerY() {
-		return playerY;
-	}
-
-	public void setPlayerY(float playerY) {
-		this.playerYold = this.playerY;
-		this.playerY2 = this.playerY + 50;
-		this.playerY = playerY;
-	}
-
-	public float getMaxPlayerX() {
-		return maxPlayerX;
-	}
-
-	public void setMaxPlayerX(float maxPlayerX) {
-		this.maxPlayerX = maxPlayerX;
-	}
-
-	public float getMaxPlayerY() {
-		return maxPlayerY;
-	}
-
-	public void setMaxPlayerY(float maxPlayerY) {
-		this.maxPlayerY = maxPlayerY;
-	}
-
-	public float getMinPlayerX() {
-		return minPlayerX;
-	}
-
-	public void setMinPlayerX(float minPlayerX) {
-		this.minPlayerX = minPlayerX;
-	}
-
-	public float getMinPlayerY() {
-		return minPlayerY;
-	}
-
-	public void setMinPlayerY(float minPlayerY) {
-		this.minPlayerY = minPlayerY;
-	}
-
-	public float getPlayerSpeed() {
-		return playerSpeed;
-	}
-
-	public void setPlayerSpeed(float playerSpeed) {
-		this.playerSpeed = playerSpeed;
-	}
-	public float getPlayerXold() {
-		return playerXold;
-	}
-
-	public void setPlayerXold(float playerXold) {
-		this.playerXold = playerXold;
-	}
-
-	public float getPlayerYold() {
-		return playerYold;
-	}
-
-	public void setPlayerYold(float playerYold) {
-		this.playerYold = playerYold;
-	}
-
-
-
 }
