@@ -25,6 +25,7 @@ public class Collision {
 		for (int i = 0; i < inList.size(); i++){
 			if (player.getCollisionRect().intersects(inList.get(i).getCollisionRect())) {
 				collide = true;
+				System.out.println("Collision From Collision Class");
 			}
 		}
 		return collide;

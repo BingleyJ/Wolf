@@ -17,26 +17,26 @@ public class UserInput {
 	}
 	//_____| Player Movement
 	public void checkInput(Input input, Player player, EditMode inEditMode) throws IOException, ClassNotFoundException {
-		CollisionDetect collisionDetect = new CollisionDetect(player, inEditMode.getObjectList());
+		//CollisionDetect collisionDetect = new CollisionDetect(player, inEditMode.getObjectList());
 		Collision collision = new Collision(0, 100, 100);
-		if (input.isKeyDown(Input.KEY_UP) && player.getPlayerY() > player.getMinPlayerY() && !collisionDetect.isCollision()){
+		if (input.isKeyDown(Input.KEY_UP) && player.getPlayerY() > player.getMinPlayerY() && !collision.isCollision(player, inEditMode.getObjectList())){
 			//_____| Move Player
 			player.setPlayerY(player.getPlayerY() - player.getPlayerSpeed());
 			player.setCurrentAnimation(up);
 		}
 		else
 			player.setCurrentAnimation(still);
-		if (input.isKeyDown(Input.KEY_DOWN) && player.getPlayerY() < player.getMaxPlayerY() && !collisionDetect.isCollision()){
+		if (input.isKeyDown(Input.KEY_DOWN) && player.getPlayerY() < player.getMaxPlayerY() && !collision.isCollision(player, inEditMode.getObjectList())){
 			//_____| Move Player
 			player.setPlayerY(player.getPlayerY() + player.getPlayerSpeed());	
 			player.setCurrentAnimation(down);
 		}
-		if (input.isKeyDown(Input.KEY_LEFT) && player.getPlayerX() > player.getMinPlayerX() && !collisionDetect.isCollision()){
+		if (input.isKeyDown(Input.KEY_LEFT) && player.getPlayerX() > player.getMinPlayerX() && !collision.isCollision(player, inEditMode.getObjectList())){
 			//_____| Move Player
 			player.setPlayerX(player.getPlayerX() - player.getPlayerSpeed());
 			player.setCurrentAnimation(left);
 		}
-		if (input.isKeyDown(Input.KEY_RIGHT) && player.getPlayerX() < player.getMaxPlayerX() && !collisionDetect.isCollision()){
+		if (input.isKeyDown(Input.KEY_RIGHT) && player.getPlayerX() < player.getMaxPlayerX() && !collision.isCollision(player, inEditMode.getObjectList())){
 			//_____| Move Player
 			player.setPlayerX(player.getPlayerX() + player.getPlayerSpeed());
 			player.setCurrentAnimation(right);
